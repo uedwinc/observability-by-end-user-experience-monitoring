@@ -16,4 +16,6 @@ End user experience monitoring is also known as `digital experience monitoring (
 
 The `/journals` directory contains
 
-- [ ] [Synthetic monitoring/CloudWatch Synthetics canaries](journals/cloudwatch-synthetic-canaries.md) for round-the-clock web monitoring
+- [ ] [Implementing Synthetic monitoring](journals/cloudwatch-synthetic-canaries.md) for round-the-clock web application monitoring using CloudWatch Synthetics canaries
+
+- [ ] [Setup Real User Monitoring (RUM) on AWS](journals/real-user-monitoring.md) for implementing and tracking end user experience
