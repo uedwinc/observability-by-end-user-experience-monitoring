@@ -81,10 +81,3 @@ As a part of the first step, let’s deploy the static website and upload a simp
 
 15. Navigate to `CloudWatch` | `RUM` and verify the summary of the RUM results:
 
-`Apdex` is an open standard solution used to measure user satisfaction with the response time of web applications and services. It is a ratio of total requests made over a period to the value of the number of satisfied and tolerable requests. The Apdex score measures customer satisfaction. It will be in the range of 0 to 1, with 0 being the worst and 1 being the best. If you look at the RUM output, in our case it is 1 as shown below:
-
-![rum-overview](/images/rum-overview.png)
-
-16. Navigate to `CloudWatch` | `RUM` | `S3RUM-App` and verify the statistics provided by CloudWatch RUM:
-
-![rum-performance-output](/images/rum-performance-output.png)
