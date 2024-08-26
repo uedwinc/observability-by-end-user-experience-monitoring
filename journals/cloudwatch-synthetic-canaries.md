@@ -132,3 +132,43 @@ The output of CloudWatch Synthetics consists primarily of **metrics, events, log
 
 ![synthetic-events](/images/synthetic-events.png)
 
+## 2. API canary
+
+Let’s set up a synthetic canary for the REST API endpoint that we deployed as a part of [_Observability for Serverless Applications on AWS_](https://github.com/uedwinc/observability-for-serverless-apps-on-aws/blob/main/journals/tracing-application.md#deploying-a-new-sample-application), and understand how to use a canary to understand issues with the API endpoint.
+
+1. Navigate to `CloudWatch` | `Synthetics Canaries` | `Create canary` | `Use a blueprint` | `API canary` and enter the name `apicanary_restapi`
+
+2. If the API is a third-party service such as an external API (for example, Boomi or Apigee), you could directly select `Add HTTP request` and provide the URL along with the methods to invoke. As we are using an Amazon API Gateway API, select the `I’m using an Amazon API Gateway API` checkbox, then select `Choose API` | `Choose API and stage from API Gateway` | `serverless-app2`, and set the `Stage` option to `Prod`:
+
+![selecting-api-gateway](/images/selecting-api-gateway.png)
+
+3. Application or endpoint URLs are available to select automatically based on the Amazon API Gateway URL. Next, click on `Add HTTP request`:
+
+![http-request](/images/http-request.png)
+
+4. Select `/items` for `Resource`, set `Method` to `GET`, and click on `Save`:
+
+![get-method](/images/get-method.png)
+
+5. Optionally, if you are looking to capture the headers and response body, you can select the same in `Reporting configuration` before clicking `Save`. This will be especially useful when you would like to analyze the response details of the API; click `Save`:
+
+![optional-response](/images/optional-response.png)
+
+Now when you navigate to `Script editor`, the Synthetics canaries script has been auto-generated based on the selected options:
+
+![canary-script](/images/canary-script.png)
+
+6. Leave the remaining options as default and click `Create canary`.
+
+  See the `restapi-canary` created below:
+
+![restapi-canary](/images/restapi-canary.png)
+
+7. If you navigate to the `HTTP steps` section, under the `Availability` tab of the canary, you can find details of the execution along with other options to investigate like `Logs` and `Traces`.
+
+![http-steps](/images/http-steps.png)
+
+> The implementation of broken link monitoring and visual monitoring could follow a similar approach to heartbeat monitoring. 
+
+If the default blueprints are inadequate for the task, we can explore the usage of Canary Recorder.
+
