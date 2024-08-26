@@ -60,15 +60,23 @@ Let’s take a scenario where you are looking to configure the availability moni
 
 ![canary-endpoint](/images/canary-endpoint.png)
 
-4. When you navigate to `Script editor`, you will notice that the script is generated automatically and populated with the parameters based on your selected options. For example, the URL is included in the script, and the `Screenshots` option is enabled. You can select your preferred `Runtime version` from the drop-down list, with options for either `Puppeteer` or `Selenium Python` scripts, depending on the specific capabilities available with your organization. This streamlined process makes it easy to customize your script and run it efficiently, without needing to manually write the code from scratch:
+4. When you navigate to `Script editor`, you will notice that the script is generated automatically and populated with the parameters based on your selected options. 
+
+For example, the URL is included in the script, and the `Screenshots` option is enabled. You can select your preferred `Runtime version` from the drop-down list, with options for either `Puppeteer` or `Selenium Python` scripts, depending on the specific capabilities available with your organization. 
+
+This streamlined process makes it easy to customize your script and run it efficiently, without needing to manually write the code from scratch:
 
 ![script-editor](/images/script-editor.png)
 
-5. You can easily schedule your canaries to run at specific intervals, either continuously or just once. You can choose a preset interval or customize your schedule using a CRON expression. For this exercise, we set the interval to every 5 minutes. This flexibility in scheduling allows you to tailor your canary runs to your specific needs and also control costs.
+5. You can easily schedule your canaries to run at specific intervals, either continuously or just once. You can choose a preset interval or customize your schedule using a CRON expression. For this exercise, we set the interval to every 5 minutes. 
+
+This flexibility in scheduling allows you to tailor your canary runs to your specific needs and also control costs.
 
 ![schedule-canaries](/images/schedule-canaries.png)
 
-6. Select the `Failure data retention` and `Success data retention` intervals. Understand that this retention setting affects the S3 storage cost. `S3 location` is auto-populated if it is the first time, otherwise, select a bucket to store the canary artifacts such as screenshots, HAR (short for `HTTP Archive`) information, and so on:
+6. The output data from the execution of Synthetic canaries is saved in an S3 bucket, and we can adjust the retention settings for this data to manage storage costs. 
+
+Select the `Failure data retention` and `Success data retention` intervals. Understand that this retention setting affects the S3 storage cost. `S3 location` is auto-populated if it is the first time, otherwise, select a bucket to store the canary artifacts such as screenshots, HAR (short for `HTTP Archive`) information, and so on:
 
 ![storage-settings](/images/storage-settings.png)
 
@@ -98,7 +106,9 @@ It will take a minute or two to create the Synthetics canary.
 
 ![canary-metrics](/images/canary-metrics.png)
 
-2. When you navigate to the `Availability` tab and verify tabs at the bottom-right corner of the Synthetic canaries created, you can verify `Screenshots`, `Logs`, `HAR File`, and `Traces`. Additionally, HAR tells you where the greatest amount of time is spent in loading the website, which will be further useful to understand where the issues are and fine-tuning the page load times:
+2. When you navigate to the `Availability` tab and see the tabs at the bottom-right corner of the Synthetic canaries created, you can verify `Screenshots`, `Logs`, `HAR File`, and `Traces`. 
+
+Additionally, HAR tells you where the greatest amount of time is spent in loading the website, which will be further useful to understand where the issues are and fine-tuning the page load times:
 
 ![synthetics-results](/images/synthetics-results.png)
 
@@ -116,9 +126,9 @@ The output of CloudWatch Synthetics consists primarily of **metrics, events, log
 
 - **CloudWatch Logs:** Logs generated during the execution of the synthetic canary are stored in CloudWatch logs, offering a comprehensive view of activities performed. You can view this by clicking on the `Logs` section, under the `Availability` tab.
 
-- **CloudWatch Events:** Through CloudWatch Events, you can understand the status of the Synthetics canaries, including changes in status, failure, and success. You can also configure notifications for these based on EventBridge rules. Click to create an EventBridge rule and select any of the Synthetic canaty event:
+- **CloudWatch Events:** Through CloudWatch Events, you can understand the status of the Synthetics canaries, including changes in status, failure, and success. You can configure notifications for these based on EventBridge rules. 
+
+Click to create an EventBridge rule and select any of the Synthetic canary event:
 
 ![synthetic-events](/images/synthetic-events.png)
-
-- **Data Retention Settings:** The output data from the execution of Synthetic canaries is saved in an S3 bucket, and we can adjust the retention settings for this data to manage storage costs. This is shown in Step 6 of the Heartbeat monitoring setup process above.
 
