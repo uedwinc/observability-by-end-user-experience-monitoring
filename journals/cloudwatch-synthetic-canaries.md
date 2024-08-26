@@ -42,3 +42,54 @@ Upon logging in to the CloudWatch Synthetics console, you will encounter three d
 
 3. **Import Scripts from S3**: You can also upload your existing Puppeteer or Selenium scripts into S3 storage and import them into the Synthetic canaries.
 
+# Configuring CloudWatch Synthetics canaries
+
+## 1. Heartbeat monitoring
+
+Let’s take a scenario where you are looking to configure the availability monitoring for a public-facing website such as `aws.amazon.com`. You can use the heartbeat blueprint to configure and measure the availability of the website.
+
+1. Navigate to `AWS Console` | `CloudWatch` | `Application signals` | `Synthetics Canaries` | `Create canary`:
+
+![creating-canaries](/images/creating-canaries.png)
+
+2. Select `Use a blueprint` | `Heartbeat monitoring`:
+
+![heartbeat-monitoring](/images/heartbeat-monitoring.png)
+
+3. Provide `awswebsite` as the name and https://aws.amazon.com as the application or endpoint URL. In one synthetic canary, you can add up to five different endpoints. If you would like to take a screenshot of the website during each canary run, you can select the `Take screenshots` checkbox:
+
+![canary-endpoint](/images/canary-endpoint.png)
+
+4. When you navigate to `Script editor`, you will notice that the script is generated automatically and populated with the parameters based on your selected options. For example, the URL is included in the script, and the `Screenshots` option is enabled. You can select your preferred `Runtime version` from the drop-down list, with options for either `Puppeteer` or `Selenium Python` scripts, depending on the specific capabilities available with your organization. This streamlined process makes it easy to customize your script and run it efficiently, without needing to manually write the code from scratch:
+
+![script-editor](/images/script-editor.png)
+
+5. You can easily schedule your canaries to run at specific intervals, either continuously or just once. You can choose a preset interval or customize your schedule using a CRON expression. For this exercise, we set the interval to every 5 minutes. This flexibility in scheduling allows you to tailor your canary runs to your specific needs and also control costs.
+
+![schedule-canaries](/images/schedule-canaries.png)
+
+6. Select the `Failure data retention` and `Success data retention` intervals. Understand that this retention setting affects the S3 storage cost. `S3 location` is auto-populated if it is the first time, otherwise, select a bucket to store the canary artifacts such as screenshots, HAR (short for `HTTP Archive`) information, and so on:
+
+![storage-settings](/images/storage-settings.png)
+
+Synthetics canaries will create a new AWS IAM role by default to execute the conceptual flow:
+
+![access-permissions](/images/access-permissions.png)
+
+7. You can create CloudWatch alarms by clicking on the `Add new alarm` button based on `SuccessPercentage` and `Duration`. You can also select a `Simple Notification Services (SNS)` service to notify you of any additional actions you would like to take based on the alarms. It can create an incident in the ITSM system or action of remediation if required:
+
+![canary-alarm](/images/canary-alarm.png)
+
+8. If your website is hosted within AWS VPC, you have the option to select the VPC as the location for executing the canary. However, in our current example, the website URL is hosted outside of our AWS account, hence we have selected `No VPC` in `VPC settings`:
+
+![vpc-settings](/images/vpc-settings.png)
+
+9. You can enable `Active tracing` (as we have selected Node.js script) to track how the Synthetics canary is executing, and click on the `Create canary` button:
+
+![xray-canary](/images/xray-canary.png)
+
+It will take a minute or two to create the Synthetics canary.
+
+![synthetic-overview](/images/synthetic-overview.png)
+
+Now, let’s explore the results of the Synthetics canaries created.
