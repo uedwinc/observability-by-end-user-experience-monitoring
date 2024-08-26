@@ -172,3 +172,20 @@ Now when you navigate to `Script editor`, the Synthetics canaries script has bee
 
 If the default blueprints are inadequate for the task, we can explore the usage of Canary Recorder.
 
+## 3. Canary Recorder
+
+CloudWatch Synthetics Recorder is a useful tool that can assist you in recording the steps performed on a website. This tool is available as a Chrome extension and can be easily installed on your browser:
+
+![chrome-webstore-canary-recorder](/images/chrome-webstore-canary-recorder.png)
+
+Once installed, you can simply click on the Start recording button and the recorder will begin capturing all the actions you perform on the website:
+
+![canary-recording](/images/canary-recording.png)
+
+The `Synthetics Recorder` is helpful when you need to generate Synthetics canary scripts quickly. By recording the steps you take on the website; the recorder auto-generates the Synthetics canary script for you. This feature saves time and effort, especially if you are not familiar with scripting.
+
+Here's a sample canary script generated:
+
+![canary-record](/images/canary-record.png)
+
+Using the Synthetics Recorder can be an effective solution if the available default blueprints do not meet your requirements. With the recorder, you have the flexibility to customize the steps and actions you want to capture, enabling you to create more tailored and effective monitoring scripts for your website.
