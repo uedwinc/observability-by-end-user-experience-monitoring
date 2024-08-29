@@ -1,21 +1,21 @@
 <head>
-  <script>
-    (function(n,i,v,r,s,c,x,z){x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};window[n]=function(c,p){x.q.push({c:c,p:p});};z=document.createElement('script');z.async=true;z.src=s;document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);})(
-      'cwr',
-      'aea18618-0cc2-47f5-bf8f-314bf2ee77dc',
-      '1.0.0',
-      'us-east-2',
-      'https://client.rum.us-east-1.amazonaws.com/1.18.0/cwr.js',
-      {
-        sessionSampleRate: 1,
-        identityPoolId: "us-east-2:e39fc0dd-96ae-447b-b2bf-dd70c885bb29",
-        endpoint: "https://dataplane.rum.us-east-2.amazonaws.com",
-        telemetries: ["performance","errors","http"],
-        allowCookies: true,
-        enableXRay: false
-      }
-    );
-  </script>
+<script>
+  (function(n,i,v,r,s,c,x,z){x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};window[n]=function(c,p){x.q.push({c:c,p:p});};z=document.createElement('script');z.async=true;z.src=s;document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);})(
+    'cwr',
+    '88b13bc2-76dc-423e-a6cb-b9808ae6f8dd',
+    '1.0.0',
+    'us-east-2',
+    'https://client.rum.us-east-1.amazonaws.com/1.18.0/cwr.js',
+    {
+      sessionSampleRate: 1,
+      identityPoolId: "us-east-2:680c30a3-d164-42dd-9a2d-b9e6ad7dc949",
+      endpoint: "https://dataplane.rum.us-east-2.amazonaws.com",
+      telemetries: ["performance","errors","http"],
+      allowCookies: false, //Modified to false for practice since this website is served over http instead of recommended https
+      enableXRay: false
+    }
+  );
+</script>
 <title>
 an s3 web site
 </title>
