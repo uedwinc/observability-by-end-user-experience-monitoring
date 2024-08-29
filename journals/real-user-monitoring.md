@@ -81,3 +81,43 @@ As a part of the first step, let’s deploy the static website and upload a simp
 
 15. Navigate to `CloudWatch` | `RUM` and verify the summary of the RUM results:
 
+![rum-overview](/images/rum-overview.png)
+
+`Apdex` is an open standard solution used to measure user satisfaction with the response time of web applications and services. It is a ratio of total requests made over a period to the value of the number of satisfied and tolerable requests. The Apdex score measures customer satisfaction. It will be in the range of 0 to 1, with 0 being the worst and 1 being the best. If you look at the RUM output, in our case it is 1.
+
+16. Navigate to `CloudWatch` | `RUM` | `S3RUM-App` and verify the statistics provided by CloudWatch RUM:
+
+![rum-performance-output](/images/rum-performance-output.png)
+
+In the figure above, you can see the overall number of page loads, load time, and any errors caused while browsing the application:
+
+- **Page loads**: Page loads provides the number of page loads over the period of time selected.
+- **Errors**: Here, you can find JavaScript and HTTP errors. You can also find the number of sessions and the number of sessions with errors.
+
+To comprehend the results produced by CloudWatch RUM, it’s important to note that the tool’s performance output includes the term web vitals, which is a concept introduced by Google (https://support.google.com/webmasters/answer/9205520) to offer crucial data points for evaluating the user experience.
+
+Refer to the figure below to understand the user’s experience details:
+
+![rum-web-vitals](/images/rum-web-vitals.png)
+
+`Web vitals` is an initiative by Google that provides unified guidance for quality signals that are essential to delivering a great user experience on the web. It is a way to simplify the understanding of the performance landscape to focus on the metrics that matter the most.
+
+Core web vitals include *Largest Contentful Paint (LCP)*, *First Input Delay (FID)*, and *Cumulative Layout Shift (CLS)*, and we could interpret the results as follows along with some possible remediations:
+
+- The LCP metric reports the render time of the largest image or text block visible within the viewport, relative to when the page first started loading. LCP considers the largest image, video, and background images of the website, and block-level elements containing text. LCP issues and solutions include improving server performance, optimizing JS/CSS bundles, compressing/caching images, pre-fetch data, using *server-side rendering (SSR)* if possible, and using edge solutions for your data.
+
+- The FID metric measures the time from when a user first interacts with a page (i.e., when they click a link, tap on a button, or use a custom JavaScript-powered control) to the time when the browser can begin processing event handlers in response to that interaction. The ideal score for this web vital is 100 ms or less. FID solutions include avoiding large blocking times (long tasks), reviewing your dependencies, removing unused polyfills, caching your assets, and lazy loading of third-party assets.
+
+- CLS measures visual stability – the percentage of content shifting around your website, caused by images loading slowly, and new pieces of content pushing items. CLS solutions include adding size attributes to images/videos, reserving space for slow-loading content (skeleton), allowing your text to be visible while your fonts are loading, and preloading your fonts.
+
+When you look at *Step and duration* in the figure below, which is part of the CloudWatch RUM *Summary* tab, you can find the duration of the steps.
+
+![steps-and-duration-of-ui](/images/steps-and-duration-of-ui.png)
+
+> One important metric to look into is *Time to first byte (TTFB)*. TTFB is a metric for determining the responsiveness of a web server. It measures the amount of time between creating a connection to the server and downloading the contents of a web page.
+
+If you are looking to understand the user performance by browser, navigate to the `Browsers & Devices` tab and verify the detail metrics by browser and by device:
+
+![browser-and-device-experience](/images/browser-and-device-experience.png)
+
+You can also analyze the user journey by navigating the `User Journey` tab.
